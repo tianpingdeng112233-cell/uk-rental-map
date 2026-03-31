@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>英国租房地图 | UK Rental Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ba1a1a",
+              "tertiary": "#6a1edb",
+              "inverse-surface": "#2d3133",
+              "background": "#f7f9fb",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface": "#191c1e",
+              "surface-container-low": "#f2f4f6",
+              "surface-variant": "#e0e3e5",
+              "primary-container": "#2563eb",
+              "on-primary-container": "#eeefff",
+              "primary": "#004ac6",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed-variant": "#003ea8",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#dbe1ff",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#eceef0",
+              "tertiary-fixed": "#eaddff",
+              "inverse-on-surface": "#eff1f3",
+              "on-background": "#191c1e",
+              "secondary-fixed-dim": "#b4c5ff",
+              "on-tertiary-fixed-variant": "#5a00c6",
+              "on-secondary-fixed-variant": "#31447b",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed": "#00174b",
+              "surface-container-high": "#e6e8ea",
+              "surface-bright": "#f7f9fb",
+              "tertiary-container": "#8343f4",
+              "on-secondary-container": "#394c84",
+              "outline": "#737686",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#b4c5ff",
+              "on-tertiary-container": "#f7edff",
+              "outline-variant": "#c3c6d7",
+              "surface-dim": "#d8dadc",
+              "on-surface-variant": "#434655",
+              "primary-fixed": "#dbe1ff",
+              "secondary-container": "#acbfff",
+              "surface": "#f7f9fb",
+              "on-tertiary-fixed": "#25005a",
+              "secondary": "#495c95",
+              "primary-fixed-dim": "#b4c5ff",
+              "on-primary": "#ffffff",
+              "surface-tint": "#0053db",
+              "tertiary-fixed-dim": "#d2bbff",
+              "on-primary-fixed": "#00174b"
+            },
+            fontFamily: {
+              "headline": ["Inter", "Noto Sans SC"],
+              "body": ["Inter", "Noto Sans SC"],
+              "label": ["Inter", "Noto Sans SC"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+        .glass-panel { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.85); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm h-[56px]">
+<div class="flex items-center gap-8">
+<span class="text-lg font-bold tracking-tighter text-blue-700 dark:text-blue-500">英国租房地图</span>
+<!-- City Selection -->
+<nav class="hidden lg:flex items-center gap-2">
+<button class="px-3 py-1 text-sm font-medium transition-colors text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 pb-1">London</button>
+<button class="px-3 py-1 text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-blue-500">Manchester</button>
+<button class="px-3 py-1 text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-blue-500">Edinburgh</button>
+<button class="px-3 py-1 text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-blue-500">Birmingham</button>
+<button class="px-3 py-1 text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-blue-500">Leeds</button>
+<button class="px-3 py-1 text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-blue-500">Glasgow</button>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-full transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined">star</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-full transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-1.5 bg-surface-container-low text-on-surface font-medium text-sm rounded-lg hover:bg-blue-50 transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Publish
+            </button>
+<button class="px-4 py-1.5 bg-primary text-white font-semibold text-sm rounded-lg shadow-sm hover:opacity-90 transition-all scale-95 active:scale-90">
+                Login/Register
+            </button>
+</div>
+</header>
+<main class="pt-[56px] flex h-screen w-full">
+<!-- Left Filter Panel -->
+<aside class="w-[320px] bg-surface-container-lowest flex-shrink-0 flex flex-col z-40 shadow-xl overflow-hidden">
+<div class="p-5 flex-shrink-0">
+<h2 class="text-lg font-bold text-on-surface mb-6">Filter Conditions</h2>
+<div class="space-y-8">
+<!-- Price Range -->
+<section>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4">Price Range (£/month)</label>
+<div class="flex items-center gap-3 mb-4">
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary/20" type="text" value="£0"/>
+<div class="w-4 h-[1px] bg-outline-variant"></div>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm px-3 py-2 focus:ring-2 focus:ring-primary/20" type="text" value="£5,000+"/>
+</div>
+<div class="relative h-1 bg-surface-container-high rounded-full mx-1">
+<div class="absolute left-0 right-1/4 h-full bg-primary rounded-full"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md cursor-pointer"></div>
+<div class="absolute right-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md cursor-pointer"></div>
+</div>
+</section>
+<!-- Property Type -->
+<section>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3">Property Type</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-medium rounded-full">All</button>
+<button class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant text-xs font-medium rounded-full hover:bg-surface-container-high">Studio</button>
+<button class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant text-xs font-medium rounded-full hover:bg-surface-container-high">1-bed</button>
+<button class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant text-xs font-medium rounded-full hover:bg-surface-container-high">2-bed</button>
+<button class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant text-xs font-medium rounded-full hover:bg-surface-container-high">3-bed+</button>
+</div>
+</section>
+<!-- Rental Type -->
+<section>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3">Rental Type</label>
+<div class="flex p-1 bg-surface-container-low rounded-xl">
+<button class="flex-1 py-2 text-xs font-bold bg-white shadow-sm rounded-lg text-primary">All</button>
+<button class="flex-1 py-2 text-xs font-medium text-on-surface-variant">Short</button>
+<button class="flex-1 py-2 text-xs font-medium text-on-surface-variant">Long</button>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex gap-3 pt-2">
+<button class="flex-1 py-2.5 text-sm font-semibold text-on-surface-variant bg-surface-container-low rounded-xl hover:bg-surface-container-high transition-colors">Reset</button>
+<button class="flex-[1.5] py-2.5 text-sm font-semibold text-white bg-primary rounded-xl shadow-lg shadow-primary/20 hover:opacity-90 transition-all">Apply Filters</button>
+</div>
+</div>
+</div>
+<!-- Scrollable Listings -->
+<div class="flex-1 overflow-y-auto custom-scrollbar border-t border-surface-container">
+<div class="p-4 space-y-3">
+<h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-outline px-1 mb-2">Current Area Listings (23)</h3>
+<!-- Card 1 -->
+<div class="group flex gap-3 p-3 bg-white rounded-xl hover:bg-blue-50 transition-all cursor-pointer">
+<img class="w-[72px] h-[72px] rounded-lg object-cover flex-shrink-0" data-alt="modern luxury apartment interior with floor to ceiling windows and elegant minimalist furniture in soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjw6tnjBPcd1fcNt5CwLzPCNi6HSbmPxoXKo8xo1jmdnWsm4H_IflVdPvb6FvPw_Y19XKAiAToG_4mSoPhOufp8lxKc_8wGYZVe_KyqoifNI1E9x8_muga-GwrnAUTt1V0Pvq60Vs-vGXtVpBprXY363PeID3kIIE119204RSgmmxAO0EDAMywOa616mmAugkKqKWRvjyRhgzQq9KT3c5ls_ARlrsRxLKbTaytkuk-u86adn3-hS1ZAE3L7ogR2cWVzJXwm-yxKlc"/>
+<div class="flex flex-col justify-between py-0.5">
+<div>
+<p class="text-sm font-bold text-primary">£2,450 <span class="text-[10px] font-normal text-on-surface-variant">/pw</span></p>
+<p class="text-xs font-medium text-on-surface line-clamp-1">Canary Wharf, London E14</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-0.5 text-[10px] font-bold text-tertiary">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.9
+                                </span>
+<span class="text-[10px] text-on-surface-variant">Studio · 45m²</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex gap-3 p-3 bg-white rounded-xl hover:bg-blue-50 transition-all cursor-pointer">
+<img class="w-[72px] h-[72px] rounded-lg object-cover flex-shrink-0" data-alt="cozy scandinavian style studio apartment with warm wooden textures and soft morning sunlight through sheer curtains" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdV0AONdk2jmdPfNyHAmXKumwgWeCVlLMGnBTy_jBMVAbqL6uvRsQqM7uezUZoLhBxonk97DlPEC9VKLJ2aRAOrQV6x-AMFIzC915azdKpVn_NvAtd1AjnlyJ5hsfRwUQROdtEF_ZvvYyWTwz2s5qud2rpxkrzpA3vOF-ZwB-QdSKhBEc-KhuQ2Y6jwgcD4OZIw8HrPQq0AACTS7L5hlx-RDrIJPyk29_WU2zUisHV5u9W0Amz2cxBRqP3kBC40jZB7Nkolraygwg"/>
+<div class="flex flex-col justify-between py-0.5">
+<div>
+<p class="text-sm font-bold text-primary">£1,850 <span class="text-[10px] font-normal text-on-surface-variant">/pw</span></p>
+<p class="text-xs font-medium text-on-surface line-clamp-1">South Kensington, SW7</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-0.5 text-[10px] font-bold text-tertiary">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.7
+                                </span>
+<span class="text-[10px] text-on-surface-variant">1-bed · 52m²</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex gap-3 p-3 bg-white rounded-xl hover:bg-blue-50 transition-all cursor-pointer">
+<img class="w-[72px] h-[72px] rounded-lg object-cover flex-shrink-0" data-alt="bright open plan kitchen and living area in a period london conversion house with tall ceilings and white walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgoepq2fdi3vt3s1BTY9HzOPcChnHz6NbpWlZ3tDwySJD_YM1US_BO7y3kT_uCs78Czq0TISSQO28nQ0cYmSJtpfc-yntfrzzIa03dvCkyauCrD_-58upWS7ZO-po4XsnhrHyMYXyix2eTR73SIdemSQPkTRFCTBeqAM67oSx5lis4Fbr6meZWf8QuYJbUSsr6WU5mjynyvvhLgrg3kfqP0OvuiYXkfkjKIJDRny2InJmJqy0DvVZ_h1SWVyYeiu296dVMfGqY1q8"/>
+<div class="flex flex-col justify-between py-0.5">
+<div>
+<p class="text-sm font-bold text-primary">£3,200 <span class="text-[10px] font-normal text-on-surface-variant">/pw</span></p>
+<p class="text-xs font-medium text-on-surface line-clamp-1">Notting Hill, London W11</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-0.5 text-[10px] font-bold text-tertiary">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span> 5.0
+                                </span>
+<span class="text-[10px] text-on-surface-variant">2-bed · 88m²</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex gap-3 p-3 bg-white rounded-xl hover:bg-blue-50 transition-all cursor-pointer">
+<img class="w-[72px] h-[72px] rounded-lg object-cover flex-shrink-0" data-alt="contemporary bedroom with plush bedding and designer lighting in a new build london development" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBErk2rn5R6GKJC7KkI7spubyM8ysVDkVWkiTabKQi-SXHxahBW0KAxwqq32ETZAByMzzv0cHxGyjlPAEk4DW4zfj2oP4DS5iksy-uDEpXOoeNdzRXETWpvoPHVQM5IGm7WpGFH6cHrYEV_yJ_dqpYIIBNkH13t5uygMhM0Ulvc5YiIlOaEzDufGtSgOLJGaJCj1eSJXbENTlq2D9r9b8iGsn_qlZwVT2lrQV5ASWp4NTjqyV8Df1Qabmfd25Oko1CEcsaNcUmwdPU"/>
+<div class="flex flex-col justify-between py-0.5">
+<div>
+<p class="text-sm font-bold text-primary">£1,600 <span class="text-[10px] font-normal text-on-surface-variant">/pw</span></p>
+<p class="text-xs font-medium text-on-surface line-clamp-1">Stratford, London E20</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-0.5 text-[10px] font-bold text-tertiary">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.5
+                                </span>
+<span class="text-[10px] text-on-surface-variant">Studio · 38m²</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Map Area -->
+<section class="flex-1 relative bg-[#e5e3df]">
+<!-- Placeholder for Map -->
+<div class="absolute inset-0 z-0 bg-cover bg-center grayscale-[0.2] contrast-[1.1]" data-alt="stylized detailed street map of london with soft muted colors and elegant typography markers" data-location="London" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDf-qs0WQhQQhpWpad6AwSlSIFBr-91N5H4e_HtOF1tG3v2WASU7CjyLxgZU9JPe5uBFXbnCF_cXS7DdcDXF-9D4Jce4CWOgey6qVJlGiPrT06mRp_nRCRMaR0OYKLnjLd2oB7k3XRHvjeCZbBN69tyr0giin-Hv-gzuW67kFTln4aRBYXHRDfNebaqPkfQk8ek8ePKZezZ_WKskewfwv1MwASpCcGi72SJoSl9eMQAMNdp-GTx2znmYjMbFVQ2vjVnHiVZIxW9R54')"></div>
+<!-- Map Markers (Price Tags) -->
+<div class="absolute top-[30%] left-[25%] group cursor-pointer">
+<div class="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full shadow-lg shadow-primary/30 transform transition-transform group-hover:scale-110 group-hover:z-50">£680</div>
+</div>
+<div class="absolute top-[45%] left-[60%] group cursor-pointer">
+<div class="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full shadow-lg shadow-primary/30 transform transition-transform group-hover:scale-110 group-hover:z-50">£1,250</div>
+</div>
+<div class="absolute top-[20%] left-[45%] group cursor-pointer">
+<div class="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full shadow-lg shadow-primary/30 transform transition-transform group-hover:scale-110 group-hover:z-50">£920</div>
+</div>
+<div class="absolute top-[65%] left-[35%] group cursor-pointer">
+<div class="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full shadow-lg shadow-primary/30 transform transition-transform group-hover:scale-110 group-hover:z-50">£2,100</div>
+</div>
+<!-- Cluster Markers -->
+<div class="absolute top-[55%] left-[50%] flex items-center justify-center w-10 h-10 bg-blue-100/90 text-primary font-bold rounded-full shadow-xl border-4 border-white/50 animate-pulse">
+                12
+            </div>
+<div class="absolute top-[15%] left-[75%] flex items-center justify-center w-8 h-8 bg-blue-100/90 text-primary font-bold rounded-full shadow-xl border-4 border-white/50">
+                5
+            </div>
+<!-- Zoom Controls -->
+<div class="absolute top-6 right-6 flex flex-col gap-2">
+<button class="w-10 h-10 glass-panel shadow-xl flex items-center justify-center rounded-xl text-on-surface hover:bg-white transition-all active:scale-90">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 glass-panel shadow-xl flex items-center justify-center rounded-xl text-on-surface hover:bg-white transition-all active:scale-90">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="mt-4">
+<button class="w-10 h-10 glass-panel shadow-xl flex items-center justify-center rounded-xl text-on-surface hover:bg-white transition-all active:scale-90">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+<!-- Bottom Status Bar -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2.5 glass-panel rounded-full shadow-2xl border border-white/40 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-sm font-semibold text-on-surface">Currently showing <span class="text-primary">23</span> listings · London</span>
+</div>
+<!-- Interaction Tooltip (Hidden normally, but styled here) -->
+<div class="absolute top-[28%] left-[28%] w-48 glass-panel p-3 rounded-2xl shadow-2xl opacity-0 hover:opacity-100 transition-opacity border border-white/40 pointer-events-none">
+<img class="w-full h-24 object-cover rounded-xl mb-2" data-alt="luxury london apartment bedroom detail with designer lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfjTLoetWmYwDxe0uQKn-FOs6cNvo4Dw1DdbctmN0x8udKBf0r6pvfd19JnNRusGdYp83yL3F4L3EX06V1MdquDGlT_rs1zZN8QoNxQYMpSCnz-jxc14t_Y_CJl5ztylDURyfWlMa4aYoWN3y-rQInE2KHc0xtPYr5ss4lGtxoUptGw7-qmUzUx2cvA-0q0y74KvgIDwq2En3T1wjL0Wu1JJ11IcrarDSgrptMPXnjW_y4o5k0_ISu-L_axXy6HrPZ3_-kRelHqc4"/>
+<h4 class="text-xs font-bold mb-1">Modern Central Flat</h4>
+<p class="text-[10px] text-primary font-black">£2,100/mo</p>
+</div>
+</section>
+</main>
+</body></html>

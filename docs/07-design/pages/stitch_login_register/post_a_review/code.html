@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#b4c5ff",
+              "on-surface": "#191c1e",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#3a485b",
+              "secondary-fixed": "#d5e3fc",
+              "primary-container": "#2563eb",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#eff1f3",
+              "outline": "#737686",
+              "tertiary-fixed": "#eaddff",
+              "primary-fixed": "#dbe1ff",
+              "on-primary-container": "#eeefff",
+              "surface-container-highest": "#e0e3e5",
+              "inverse-primary": "#b4c5ff",
+              "tertiary-container": "#8343f4",
+              "surface-bright": "#f7f9fb",
+              "inverse-surface": "#2d3133",
+              "on-tertiary-fixed": "#25005a",
+              "on-background": "#191c1e",
+              "secondary-container": "#d5e3fc",
+              "tertiary-fixed-dim": "#d2bbff",
+              "secondary": "#515f74",
+              "primary": "#004ac6",
+              "on-tertiary": "#ffffff",
+              "tertiary": "#6a1edb",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#57657a",
+              "on-tertiary-fixed-variant": "#5a00c6",
+              "on-primary-fixed": "#00174b",
+              "surface-container-high": "#e6e8ea",
+              "surface-container": "#eceef0",
+              "on-surface-variant": "#434655",
+              "surface-tint": "#0053db",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#0d1c2e",
+              "outline-variant": "#c3c6d7",
+              "secondary-fixed-dim": "#b9c7df",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-container": "#f7edff",
+              "surface-dim": "#d8dadc",
+              "surface-container-low": "#f2f4f6",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#003ea8",
+              "background": "#f7f9fb",
+              "surface": "#f7f9fb"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-star {
+            font-variation-settings: 'FILL' 1;
+            color: #FACC15;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 h-14 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+<div class="flex items-center justify-between px-6 w-full max-w-[1920px] mx-auto h-full">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">
+                The Curated Navigator
+            </div>
+<div class="hidden md:flex items-center gap-8 font-sans text-sm font-medium tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all duration-200" href="#">London</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all duration-200" href="#">Manchester</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all duration-200" href="#">Birmingham</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all duration-200" href="#">Edinburgh</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Background Content (Property Details Simulation) -->
+<main class="pt-20 pb-20 px-4 md:px-12 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="rounded-xl overflow-hidden aspect-video relative group">
+<img alt="Property Hero" class="w-full h-full object-cover" data-alt="luxury modern apartment interior with floor to ceiling windows overlooking a city skyline at sunset with warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOzWoEaTu9CZw2ccLsiWOt36ROUV_OBMOFaxS45TfLmloeN5fS3fqwJQy6K9HlCQErBXdlCJ5EcQ9rcROstWFm_Zih62yQ8tBNruHflcvpWh3MgjtK9k-LNsgCG8lWgJlhw-Nutd7DDKMKPF8NfIPZmVpaE1YWqATnOTu_oWQUSX8OSdmfgjV4e51YIY4hiibWiAgdh86nlxIUr4XOp8EjDfILLEl-hgjhmO1CbaZAwd1qLllaVn-hHUGSVLAM5kqdwkz2-AFU_VAr"/>
+<div class="absolute top-4 left-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            Authentic
+                        </span>
+</div>
+</div>
+<div class="space-y-4">
+<h1 class="text-4xl font-bold tracking-tight text-on-surface">The Skyline Residence</h1>
+<p class="text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined">location_on</span>
+                        128 Canary Wharf, London E14 5AB
+                    </p>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="text-2xl font-bold text-primary mb-4">£2,450 <span class="text-sm font-normal text-on-surface-variant">/ month</span></div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-3 rounded-lg font-semibold shadow-md active:scale-95 transition-transform">
+                        Book a Viewing
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-on-surface/40 backdrop-blur-sm">
+<!-- Review Modal Card -->
+<div class="w-full max-w-[500px] bg-surface-container-lowest rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.12)] overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="p-8 pb-4">
+<div class="flex justify-between items-start mb-2">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">Leave your authentic experience</h2>
+<button class="text-on-surface-variant hover:bg-surface-container rounded-full p-1 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">The Skyline Residence</p>
+<p class="text-xs text-on-surface-variant">128 Canary Wharf, London E14 5AB</p>
+</div>
+</div>
+<!-- Rating Section (2x2 Grid) -->
+<div class="px-8 py-4 grid grid-cols-2 gap-4">
+<!-- Transport -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all">
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant mb-2">Transport</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] cursor-pointer">star</span>
+</div>
+</div>
+<!-- Security -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all">
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant mb-2">Security</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] cursor-pointer">star</span>
+</div>
+</div>
+<!-- Value -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all">
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant mb-2">Value</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-outline-variant text-[20px] cursor-pointer">star</span>
+</div>
+</div>
+<!-- Overall -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all">
+<p class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant mb-2">Overall</p>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+<span class="material-symbols-outlined filled-star text-[20px] cursor-pointer">star</span>
+</div>
+</div>
+</div>
+<!-- Comment Section -->
+<div class="px-8 py-4 space-y-2 relative">
+<label class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Your Experience</label>
+<textarea class="w-full h-[120px] p-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all resize-none text-sm placeholder:text-outline/60" placeholder="Share your real living experience..."></textarea>
+<span class="absolute bottom-6 right-10 text-[10px] font-medium text-outline">0/500</span>
+</div>
+<!-- Modal Actions -->
+<div class="p-8 pt-4 flex gap-4">
+<button class="flex-1 py-3.5 border border-outline-variant text-on-surface-variant font-semibold rounded-lg hover:bg-surface-container transition-colors active:scale-[0.98]">
+                    Cancel
+                </button>
+<button class="flex-1 py-3.5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-semibold rounded-lg shadow-md active:scale-[0.98] transition-all">
+                    Submit Review
+                </button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component - Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 pb-safe px-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg md:hidden border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Publish</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+</body></html>

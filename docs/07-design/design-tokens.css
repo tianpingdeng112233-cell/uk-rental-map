@@ -1,0 +1,60 @@
+:root {
+  /* === Colors: Brand === */
+  --color-primary: #004AC6;
+  --color-primary-container: #2563EB;
+  --color-on-primary: #FFFFFF;
+
+  /* === Colors: Surfaces === */
+  --color-surface: #F7F9FB;
+  --color-surface-container-low: #F2F4F6;
+  --color-surface-container-lowest: #FFFFFF;
+
+  /* === Colors: Text === */
+  --color-on-surface: #191C1E;
+  --color-on-surface-variant: #434655;
+  --color-outline-variant: #C3C6D7;
+
+  /* === Colors: Functional === */
+  --color-success: #059669;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+  --color-tertiary: #6A1EDB;
+  --color-star: #F59E0B;
+
+  /* === Typography === */
+  --font-sans: Inter, 'Noto Sans SC', sans-serif;
+  --font-size-label: 0.6875rem;   /* 11px */
+  --font-size-body: 0.875rem;     /* 14px */
+  --font-size-title: 1.125rem;    /* 18px */
+  --font-size-headline: 1.5rem;   /* 24px */
+  --font-size-display: 2.75rem;   /* 44px */
+  --line-height-body: 1.6;
+
+  /* === Spacing (4px base) === */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* === Border Radius === */
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* === Shadows === */
+  --shadow-ambient: 0 12px 32px rgba(15, 23, 42, 0.06);
+
+  /* === Layout === */
+  --sidebar-width: 280px;
+  --nav-height: 56px;
+  --admin-sidebar-width: 200px;
+  --content-max-width: 1000px;
+}

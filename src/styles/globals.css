@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-primary: #004AC6;
+  --color-primary-container: #2563EB;
+  --color-on-primary: #FFFFFF;
+
+  /* Surfaces */
+  --color-surface: #F7F9FB;
+  --color-surface-container-low: #F2F4F6;
+  --color-surface-container-lowest: #FFFFFF;
+
+  /* Text */
+  --color-on-surface: #191C1E;
+  --color-on-surface-variant: #434655;
+  --color-outline-variant: #C3C6D7;
+
+  /* Functional */
+  --color-success: #059669;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+  --color-tertiary: #6A1EDB;
+  --color-star: #F59E0B;
+
+  /* Typography */
+  --font-sans: Inter, 'Noto Sans SC', sans-serif;
+
+  /* Shadows */
+  --shadow-ambient: 0 12px 32px rgba(15, 23, 42, 0.06);
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-default: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+/* Layout variables */
+:root {
+  --sidebar-width: 320px;
+  --nav-height: 56px;
+}
+
+body {
+  background: #F7F9FB;
+  color: #191C1E;
+  font-family: Inter, 'Noto Sans SC', sans-serif;
+  line-height: 1.6;
+}
+
+/* Mapbox overrides */
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+  overflow: hidden;
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 18px;
+  padding: 4px 8px;
+  color: #434655;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #C3C6D7;
+  border-radius: 9999px;
+}

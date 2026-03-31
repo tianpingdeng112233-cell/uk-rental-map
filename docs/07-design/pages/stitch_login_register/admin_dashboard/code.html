@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard | The Curated Navigator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "secondary-fixed": "#d5e3fc",
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline": "#737686",
+                        "tertiary-fixed": "#eaddff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary-container": "#8343f4",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed": "#25005a",
+                        "on-background": "#191c1e",
+                        "secondary-container": "#d5e3fc",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "secondary": "#515f74",
+                        "primary": "#004ac6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#6a1edb",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#434655",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "outline-variant": "#c3c6d7",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-container": "#f7edff",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "background": "#f7f9fb",
+                        "surface": "#f7f9fb"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-900 dark:bg-black shadow-[4px_0_24px_rgba(0,0,0,0.1)] flex flex-col py-6 gap-2 z-50">
+<div class="px-4 mb-8">
+<h1 class="text-lg font-black text-white px-4">Admin Console</h1>
+<p class="text-slate-400 text-xs px-4 font-medium uppercase tracking-widest mt-1">Management Portal</p>
+</div>
+<nav class="flex-1">
+<!-- Active Item -->
+<div class="flex items-center gap-3 bg-blue-600 text-white rounded-xl px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-sans text-sm font-semibold">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-sans text-sm font-semibold">Review Queue</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">home_work</span>
+<span class="font-sans text-sm font-semibold">Listing Management</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">group</span>
+<span class="font-sans text-sm font-semibold">User Management</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">database</span>
+<span class="font-sans text-sm font-semibold">Seed Data</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 mx-2 cursor-pointer active:opacity-80 transition-colors duration-200">
+<span class="material-symbols-outlined">reviews</span>
+<span class="font-sans text-sm font-semibold">Review Management</span>
+</div>
+</nav>
+<div class="mt-auto px-4">
+<button class="w-full bg-slate-800 text-white rounded-lg py-2.5 text-sm font-bold flex items-center justify-center gap-2 hover:bg-slate-700 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add_chart</span>
+                New Report
+            </button>
+</div>
+</aside>
+<!-- Content Area -->
+<main class="ml-64 min-h-screen p-8">
+<!-- Header -->
+<header class="mb-10">
+<h2 class="text-3xl font-extrabold tracking-tighter text-on-surface">Dashboard</h2>
+<p class="text-on-surface-variant text-sm mt-1">Real-time overview of the UK rental curation ecosystem.</p>
+</header>
+<!-- Stats Row: Bento-style Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.04)] border border-outline-variant/10">
+<span class="text-on-tertiary-fixed-variant text-[10px] font-bold uppercase tracking-widest block mb-2">Pending Approvals</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-on-surface tracking-tighter">24</span>
+<span class="text-primary text-xs font-bold">+5 since 1h</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.04)] border border-outline-variant/10">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest block mb-2">Total Listings</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-on-surface tracking-tighter">1,284</span>
+<span class="text-slate-400 text-xs font-medium">Verified</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.04)] border border-outline-variant/10">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest block mb-2">Active Users</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-on-surface tracking-tighter">8,921</span>
+<span class="text-tertiary text-xs font-bold">12% growth</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(15,23,42,0.04)] border border-outline-variant/10">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest block mb-2">Reviews Logged</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-on-surface tracking-tighter">452</span>
+<span class="text-on-secondary-container text-xs font-medium">Avg 4.8★</span>
+</div>
+</div>
+</div>
+<!-- Seed Entry Section -->
+<section class="mb-12 bg-surface-container-low p-8 rounded-2xl border-l-4 border-primary">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="text-lg font-bold text-on-surface tracking-tight">Quick Seed Entry</h3>
+<p class="text-on-surface-variant text-xs">Instantly add curated property data to the global index.</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed-variant">bolt</span>
+</div>
+<div class="flex flex-wrap items-end gap-4">
+<div class="flex-1 min-w-[140px]">
+<label class="block text-[10px] font-bold uppercase text-on-surface-variant mb-1.5 ml-1">Source</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/20 shadow-sm h-11 px-4">
+<option>Rightmove</option>
+<option>Zoopla</option>
+<option>Spareroom</option>
+<option>Xiaohongshu</option>
+</select>
+</div>
+<div class="flex-[2] min-w-[200px]">
+<label class="block text-[10px] font-bold uppercase text-on-surface-variant mb-1.5 ml-1">Listing URL / Link</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 shadow-sm h-11 px-4" placeholder="https://..." type="text"/>
+</div>
+<div class="flex-1 min-w-[100px]">
+<label class="block text-[10px] font-bold uppercase text-on-surface-variant mb-1.5 ml-1">Price (£)</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 shadow-sm h-11 px-4" placeholder="2400" type="number"/>
+</div>
+<div class="flex-1 min-w-[120px]">
+<label class="block text-[10px] font-bold uppercase text-on-surface-variant mb-1.5 ml-1">Type</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/20 shadow-sm h-11 px-4">
+<option>En-suite</option>
+<option>Studio</option>
+<option>1-Bed Flat</option>
+<option>Shared House</option>
+</select>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="block text-[10px] font-bold uppercase text-on-surface-variant mb-1.5 ml-1">Address</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 shadow-sm h-11 px-4" placeholder="E1 6AN, London" type="text"/>
+</div>
+<button class="bg-primary text-white font-bold text-sm px-8 h-11 rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+                    Quick Add
+                </button>
+</div>
+</section>
+<!-- Pending Approvals Table -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_12px_32px_rgba(15,23,42,0.06)] overflow-hidden">
+<div class="px-8 py-6 flex items-center justify-between">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Pending Approval Queue</h3>
+<div class="flex gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full animate-pulse"></span>
+                        Live Queue
+                    </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Time Received</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Poster</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Location</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Price</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Type</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant">Term</th>
+<th class="px-8 py-4 text-[11px] font-black uppercase tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<p class="text-sm font-semibold text-on-surface">14:20</p>
+<p class="text-[10px] text-on-surface-variant font-medium">23 Oct 2023</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">ZZ</div>
+<div>
+<p class="text-sm font-bold text-on-surface leading-none">Zhang Wei</p>
+<p class="text-[10px] text-tertiary font-bold uppercase">Pro Curator</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium text-on-surface">Canary Wharf, London</p>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-on-surface">£2,850<span class="text-on-surface-variant font-normal text-xs">/mo</span></p>
+</td>
+<td class="px-8 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">1-Bed Apt</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm text-on-surface font-medium">12 Months</p>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end items-center gap-4">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">View</button>
+<button class="text-green-600 font-bold text-xs uppercase tracking-widest hover:underline">Approve</button>
+<button class="text-error font-bold text-xs uppercase tracking-widest hover:underline">Reject</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<p class="text-sm font-semibold text-on-surface">13:45</p>
+<p class="text-[10px] text-on-surface-variant font-medium">23 Oct 2023</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs">LL</div>
+<div>
+<p class="text-sm font-bold text-on-surface leading-none">Li Lin</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase">New User</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium text-on-surface">Deansgate, Manchester</p>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-on-surface">£1,400<span class="text-on-surface-variant font-normal text-xs">/mo</span></p>
+</td>
+<td class="px-8 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Studio</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm text-on-surface font-medium">Flexible</p>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end items-center gap-4">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">View</button>
+<button class="text-green-600 font-bold text-xs uppercase tracking-widest hover:underline">Approve</button>
+<button class="text-error font-bold text-xs uppercase tracking-widest hover:underline">Reject</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<p class="text-sm font-semibold text-on-surface">11:12</p>
+<p class="text-[10px] text-on-surface-variant font-medium">23 Oct 2023</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover" data-alt="portrait of a young professional smiling in a modern office setting with natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3cUKwFhpCeSulJuOAebd3THYeHwm0xuqYlYYetch632S_ntcfKajcVplOBwd0RltkFIUVQTQMs1exTRDRDhO34D3T9-c4e8jUA0Aq38W6da6jo4j7jLx0OzCJTfr_gN0lL-J7tlVA3Nrdb-JGosS7d--6H_gBPNQLHdJf3QpYh__BaRAfT6btwMsWUJxByCe4t-jpdB3vodJD6zGIzRBHaXTtFfgfLgnV1CNBNAUJ1r12kSDttJxVB8AuidAv9XtvB4qvYHzTOie"/>
+<div>
+<p class="text-sm font-bold text-on-surface leading-none">James Smith</p>
+<p class="text-[10px] text-tertiary font-bold uppercase">Verified Partner</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium text-on-surface">Jewellery Quarter, Birmingham</p>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-black text-on-surface">£950<span class="text-on-surface-variant font-normal text-xs">/mo</span></p>
+</td>
+<td class="px-8 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Shared</span>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm text-on-surface font-medium">6 Months</p>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end items-center gap-4">
+<button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">View</button>
+<button class="text-green-600 font-bold text-xs uppercase tracking-widest hover:underline">Approve</button>
+<button class="text-error font-bold text-xs uppercase tracking-widest hover:underline">Reject</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-low/30 border-t border-surface-container flex items-center justify-between">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Showing 3 of 24 entries</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-surface-container-highest transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

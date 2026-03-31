@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Rental Map - Web Wireframe Prototype</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Segoe UI', sans-serif; background: #F5F5F5; color: #333; }
+
+  :root {
+    --bg: #FFFFFF;
+    --bg-light: #F5F5F5;
+    --border: #E0E0E0;
+    --text-muted: #BDBDBD;
+    --text-secondary: #757575;
+    --text-primary: #333333;
+  }
+
+  .page {
+    width: 1200px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  .page-label {
+    background: #333;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .section-title {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 40px 0 10px;
+    background: var(--bg-light);
+  }
+  .section-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    text-align: center;
+    padding-bottom: 20px;
+    background: var(--bg-light);
+  }
+  .btn {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg-light);
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: #757575;
+    color: #fff;
+    border-color: #757575;
+  }
+  .input {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    background: var(--bg);
+    color: var(--text-muted);
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .placeholder-img {
+    background: var(--bg-light);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .tag {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin: 2px;
+  }
+  .star { color: var(--text-muted); font-size: 14px; }
+  .divider { border-top: 1px solid var(--border); margin: 12px 0; }
+
+  /* 顶部导航栏 */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .top-nav .logo { font-size: 18px; font-weight: bold; }
+  .top-nav-right { display: flex; align-items: center; gap: 12px; }
+</style>
+</head>
+<body>
+
+<!-- ===================================================== -->
+<!-- P01: 首页 - 地图浏览（Web桌面端核心页面）               -->
+<!-- ===================================================== -->
+<div class="section-title">P01</div>
+<div class="section-desc">首页 - 地图浏览（Web桌面端 · 核心页面）</div>
+
+<div class="page" style="height: 750px;">
+  <div class="page-label">P01 - 首页 / 地图浏览（1200px Web）</div>
+
+  <!-- 顶部导航 -->
+  <div class="top-nav">
+    <div class="logo">UK Rental Map</div>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <!-- 城市快捷选择 -->
+      <div class="btn" style="font-size: 12px;">全部城市</div>
+      <div class="btn btn-primary" style="font-size: 12px;">伦敦</div>
+      <div class="btn" style="font-size: 12px;">曼彻斯特</div>
+      <div class="btn" style="font-size: 12px;">伯明翰</div>
+      <div class="btn" style="font-size: 12px;">爱丁堡</div>
+      <div class="btn" style="font-size: 12px;">利兹</div>
+      <div class="btn" style="font-size: 12px;">格拉斯哥</div>
+      <div class="btn" style="font-size: 12px;">布里斯托</div>
+      <div class="btn" style="font-size: 12px;">谢菲尔德</div>
+    </div>
+    <div class="top-nav-right">
+      <div class="btn" style="font-size: 12px;">[+] 发布出租</div>
+      <div class="btn" style="font-size: 12px;">[★] 留评价</div>
+      <div class="btn btn-primary" style="font-size: 12px;">登录 / 注册</div>
+    </div>
+  </div>
+
+  <!-- 主体：左侧筛选 + 右侧地图 -->
+  <div style="display: flex; height: calc(100% - 52px);">
+
+    <!-- 左侧筛选面板 -->
+    <div style="width: 280px; border-right: 1px solid var(--border); padding: 16px; overflow-y: auto; flex-shrink: 0;">
+
+      <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">筛选条件</div>
+
+      <!-- 价格 -->
+      <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">价格范围（£/月）</div>
+      <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+        <div class="input" style="margin: 0; flex: 1; font-size: 12px;">最低 £0</div>
+        <span style="color: var(--text-muted); line-height: 36px;">—</span>
+        <div class="input" style="margin: 0; flex: 1; font-size: 12px;">最高 £5000</div>
+      </div>
+      <!-- 滑块 -->
+      <div style="height: 4px; background: var(--border); border-radius: 2px; margin: 0 0 16px; position: relative;">
+        <div style="position: absolute; left: 15%; width: 35%; height: 4px; background: #757575; border-radius: 2px;"></div>
+        <div style="position: absolute; left: 15%; top: -5px; width: 14px; height: 14px; background: #757575; border-radius: 50%;"></div>
+        <div style="position: absolute; left: 50%; top: -5px; width: 14px; height: 14px; background: #757575; border-radius: 50%;"></div>
+      </div>
+
+      <!-- 房型 -->
+      <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">房型</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+        <div class="btn" style="font-size: 11px; padding: 6px 10px;">全部</div>
+        <div class="btn" style="font-size: 11px; padding: 6px 10px;">Studio</div>
+        <div class="btn btn-primary" style="font-size: 11px; padding: 6px 10px;">1室</div>
+        <div class="btn" style="font-size: 11px; padding: 6px 10px;">2室</div>
+        <div class="btn" style="font-size: 11px; padding: 6px 10px;">3室</div>
+        <div class="btn" style="font-size: 11px; padding: 6px 10px;">4室+</div>
+      </div>
+
+      <!-- 租期 -->
+      <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">租期类型</div>
+      <div style="display: flex; gap: 6px; margin-bottom: 16px;">
+        <div class="btn" style="font-size: 11px; flex: 1; padding: 6px;">全部</div>
+        <div class="btn" style="font-size: 11px; flex: 1; padding: 6px;">短租</div>
+        <div class="btn btn-primary" style="font-size: 11px; flex: 1; padding: 6px;">长租</div>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <div class="btn" style="flex: 1; font-size: 12px;">重置</div>
+        <div class="btn btn-primary" style="flex: 1; font-size: 12px;">应用</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 房源列表（地图下方辅助列表） -->
+      <div style="font-size: 13px; font-weight: bold; margin-bottom: 10px;">当前区域房源 (23)</div>
+
+      <!-- 列表项1 -->
+      <div style="border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+        <div style="display: flex; gap: 8px;">
+          <div class="placeholder-img" style="width: 60px; height: 48px; border-radius: 4px; flex-shrink: 0; font-size: 10px;">[图]</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: bold;">£680/月</div>
+            <div style="font-size: 11px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">1室 · 长租 · Kings Cross</div>
+            <div style="font-size: 11px; color: var(--text-muted);">★ 4.2 (3评价)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 列表项2 -->
+      <div style="border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+        <div style="display: flex; gap: 8px;">
+          <div class="placeholder-img" style="width: 60px; height: 48px; border-radius: 4px; flex-shrink: 0; font-size: 10px;">[图]</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: bold;">£750/月</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">Studio · 短租 · Camden</div>
+            <div style="font-size: 11px; color: var(--text-muted);">暂无评价</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 列表项3 -->
+      <div style="border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px;">
+        <div style="display: flex; gap: 8px;">
+          <div class="placeholder-img" style="width: 60px; height: 48px; border-radius: 4px; flex-shrink: 0; font-size: 10px;">[图]</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-size: 14px; font-weight: bold;">£520/月</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">2室合租 · 长租 · Islington</div>
+            <div style="font-size: 11px; color: var(--text-muted);">★ 3.9 (1评价)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧地图区域 -->
+    <div style="flex: 1; position: relative;">
+      <div class="placeholder-img" style="width: 100%; height: 100%;">
+        <div style="text-align: center;">
+          [交互地图 - 全屏]<br><br>
+          <span style="font-size: 13px;">缩放 / 拖动 / 点击标注查看房源</span><br>
+          <span style="font-size: 11px; color: var(--text-muted);">选择城市后地图自动聚焦</span>
+        </div>
+      </div>
+
+      <!-- 模拟标注点 -->
+      <div style="position: absolute; top: 22%; left: 20%; background: #757575; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">£680</div>
+      <div style="position: absolute; top: 35%; left: 45%; background: #757575; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">£750</div>
+      <div style="position: absolute; top: 18%; left: 55%; background: #757575; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">£520</div>
+      <div style="position: absolute; top: 50%; left: 30%; background: #757575; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">£890</div>
+      <div style="position: absolute; top: 45%; left: 65%; background: #757575; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">£620</div>
+      <div style="position: absolute; top: 60%; left: 50%; background: var(--text-muted); color: #fff; padding: 4px 12px; border-radius: 16px; font-size: 12px;">12个房源</div>
+      <div style="position: absolute; top: 28%; left: 75%; background: var(--text-muted); color: #fff; padding: 4px 12px; border-radius: 16px; font-size: 12px;">8个房源</div>
+
+      <!-- 缩放控件 -->
+      <div style="position: absolute; right: 16px; top: 16px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="width: 36px; height: 36px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px;">+</div>
+        <div style="width: 36px; height: 36px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px;">−</div>
+      </div>
+
+      <!-- 底部状态栏 -->
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.9); border-top: 1px solid var(--border); padding: 8px 16px; font-size: 12px; color: var(--text-secondary); display: flex; justify-content: space-between;">
+        <span>当前显示 23 个房源 · 伦敦</span>
+        <span>数据来源：编辑精选 + 用户发布</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P02: 点击标注 → 信息弹窗（地图上的Popup）              -->
+<!-- ===================================================== -->
+<div class="section-title">P02</div>
+<div class="section-desc">点击地图标注后 - 信息弹窗（Popup）</div>
+
+<div class="page" style="height: 500px;">
+  <div class="page-label">P02 - 地图标注弹窗</div>
+
+  <div style="position: relative; height: 100%;">
+    <div class="placeholder-img" style="width: 100%; height: 100%; opacity: 0.4;">[地图背景]</div>
+
+    <!-- Popup弹窗 -->
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -60%); width: 320px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden;">
+      <!-- 图片 -->
+      <div class="placeholder-img" style="height: 140px;">[房源照片]</div>
+      <!-- 信息 -->
+      <div style="padding: 12px 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div style="font-size: 20px; font-weight: bold;">£680/月</div>
+          <div style="font-size: 12px; color: var(--text-muted);">来源：Zoopla</div>
+        </div>
+        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">1室 · 长租 · Kings Cross, London N1</div>
+        <div style="margin-top: 8px;">
+          <span class="star">★★★★☆</span>
+          <span style="font-size: 12px; color: var(--text-secondary); margin-left: 4px;">4.2 (3条评价)</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <div class="tag">bills含</div>
+          <div class="tag">独立卫浴</div>
+          <div class="tag">洗衣机</div>
+        </div>
+        <div class="btn btn-primary" style="width: 100%; margin-top: 12px; padding: 10px;">查看详情 →</div>
+      </div>
+      <!-- 三角箭头 -->
+      <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid var(--bg);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P03: 房源详情页                                        -->
+<!-- ===================================================== -->
+<div class="section-title">P03</div>
+<div class="section-desc">房源详情页</div>
+
+<div class="page" style="min-height: auto;">
+  <div class="page-label">P03 - 房源详情页</div>
+
+  <!-- 顶部导航 -->
+  <div class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="font-size: 14px; color: var(--text-secondary); cursor: pointer;">← 返回地图</span>
+      <span class="logo">房源详情</span>
+    </div>
+    <div class="top-nav-right">
+      <div class="btn" style="font-size: 12px;">[+] 发布出租</div>
+      <div class="btn btn-primary" style="font-size: 12px;">登录 / 注册</div>
+    </div>
+  </div>
+
+  <!-- 主体：两栏布局 -->
+  <div style="display: flex; max-width: 1000px; margin: 24px auto; gap: 32px; padding: 0 24px;">
+
+    <!-- 左栏：主要信息 -->
+    <div style="flex: 1;">
+      <!-- 照片区 -->
+      <div class="placeholder-img" style="height: 360px; border-radius: 12px; margin-bottom: 20px;">
+        [房源照片轮播 · 点击左右切换 · 1/5]
+      </div>
+
+      <!-- 基本信息 -->
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <div style="font-size: 28px; font-weight: bold;">£680/月</div>
+        <div style="font-size: 13px; color: var(--text-muted);">来源：Zoopla · <a style="color: var(--text-secondary);">查看原始链接 →</a></div>
+      </div>
+      <div style="font-size: 15px; color: var(--text-secondary); margin-top: 6px;">Kings Cross, London N1 · Urbanest King's Cross</div>
+      <div style="display: flex; gap: 8px; margin-top: 12px;">
+        <div class="tag">1室</div>
+        <div class="tag">长租</div>
+        <div class="tag">bills含</div>
+        <div class="tag">独立卫浴</div>
+        <div class="tag">洗衣机</div>
+        <div class="tag">厨房共享</div>
+      </div>
+
+      <div class="divider" style="margin: 20px 0;"></div>
+
+      <!-- 详细信息 -->
+      <div style="font-size: 15px; font-weight: bold; margin-bottom: 10px;">房源信息</div>
+      <table style="font-size: 13px; color: var(--text-secondary); line-height: 2.2; width: 100%;">
+        <tr><td style="width: 100px; color: var(--text-muted);">可入住日期</td><td>2026年9月1日</td></tr>
+        <tr><td style="color: var(--text-muted);">小区名称</td><td>Urbanest King's Cross</td></tr>
+        <tr><td style="color: var(--text-muted);">联系方式</td><td>微信：zhang_jie_london</td></tr>
+      </table>
+
+      <div class="divider" style="margin: 20px 0;"></div>
+
+      <!-- 描述 -->
+      <div style="font-size: 15px; font-weight: bold; margin-bottom: 10px;">详细描述</div>
+      <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.8;">
+        位于King's Cross地铁站步行5分钟的位置，交通非常便利。Northern Line和Victoria Line双线交汇。小区安全管理严格，有24小时门禁和前台。周边有Waitrose和Sainsbury's超市，日常购物方便。房间朝南采光好，配有独立卫浴和基本家具。适合UCL、KCL附近的留学生。
+      </div>
+
+      <div class="divider" style="margin: 20px 0;"></div>
+
+      <!-- 地图位置 -->
+      <div style="font-size: 15px; font-weight: bold; margin-bottom: 10px;">位置</div>
+      <div class="placeholder-img" style="height: 200px; border-radius: 8px;">
+        [小地图 - 显示房源位置和周边]
+      </div>
+    </div>
+
+    <!-- 右栏：评价区 -->
+    <div style="width: 340px; flex-shrink: 0;">
+      <!-- 评价概览 -->
+      <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px;">
+        <div style="font-size: 15px; font-weight: bold; margin-bottom: 14px;">真实体验评价 (3条)</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="text-align: center; background: var(--bg-light); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 22px; font-weight: bold;">4.2</div>
+            <div style="font-size: 11px; color: var(--text-muted);">交通</div>
+          </div>
+          <div style="text-align: center; background: var(--bg-light); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 22px; font-weight: bold;">3.8</div>
+            <div style="font-size: 11px; color: var(--text-muted);">安全</div>
+          </div>
+          <div style="text-align: center; background: var(--bg-light); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 22px; font-weight: bold;">4.0</div>
+            <div style="font-size: 11px; color: var(--text-muted);">性价比</div>
+          </div>
+          <div style="text-align: center; background: var(--bg-light); border-radius: 8px; padding: 12px;">
+            <div style="font-size: 22px; font-weight: bold;">4.1</div>
+            <div style="font-size: 11px; color: var(--text-muted);">整体</div>
+          </div>
+        </div>
+        <div class="btn btn-primary" style="width: 100%; margin-top: 14px; padding: 10px;">我也住过这里，留评价 →</div>
+      </div>
+
+      <!-- 评价列表 -->
+      <div style="border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-size: 14px; font-weight: bold;">小明同学</div>
+          <div style="font-size: 12px; color: var(--text-muted);">2026-02-15</div>
+        </div>
+        <div class="star" style="font-size: 13px;">★★★★☆ 4.0</div>
+        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+          交通很方便，走路5分钟到地铁。小区管理不错，但隔音稍差，楼上偶尔有噪音。总体来说性价比还可以。
+        </div>
+      </div>
+
+      <div style="border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-size: 14px; font-weight: bold;">学姐Amy</div>
+          <div style="font-size: 12px; color: var(--text-muted);">2025-12-03</div>
+        </div>
+        <div class="star" style="font-size: 13px;">★★★★★ 4.5</div>
+        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+          住了一年，非常推荐！离UCL骑车10分钟，周边超市和餐厅很多。房东人也很好。
+        </div>
+      </div>
+
+      <div style="border: 1px solid var(--border); border-radius: 12px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-size: 14px; font-weight: bold;">大力学长</div>
+          <div style="font-size: 12px; color: var(--text-muted);">2025-09-20</div>
+        </div>
+        <div class="star" style="font-size: 13px;">★★★★☆ 3.8</div>
+        <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6;">
+          位置确实好，但价格偏高。如果预算充足的话推荐。冬天暖气不太给力。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P04: 登录/注册（居中模态框样式）                         -->
+<!-- ===================================================== -->
+<div class="section-title">P04</div>
+<div class="section-desc">登录 / 注册（居中卡片）</div>
+
+<div class="page" style="height: 650px; display: flex; align-items: center; justify-content: center; background: var(--bg-light);">
+  <div class="page-label" style="position: absolute; top: 0; left: 0; right: 0;">P04 - 登录/注册</div>
+
+  <div style="width: 400px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 32px;">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <div style="font-size: 22px; font-weight: bold;">UK Rental Map</div>
+      <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">一张地图看清英国所有房源</div>
+    </div>
+
+    <!-- Tab -->
+    <div style="display: flex; border-bottom: 2px solid var(--border); margin-bottom: 20px;">
+      <div style="flex: 1; text-align: center; padding: 10px; font-size: 14px; font-weight: bold; border-bottom: 2px solid #757575; margin-bottom: -2px;">登录</div>
+      <div style="flex: 1; text-align: center; padding: 10px; font-size: 14px; color: var(--text-muted);">注册</div>
+    </div>
+
+    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">邮箱地址</div>
+    <div class="input">请输入邮箱</div>
+    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">密码</div>
+    <div class="input">请输入密码</div>
+
+    <div class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 12px; font-size: 14px;">登录</div>
+    <div style="text-align: center; margin-top: 12px; font-size: 12px; color: var(--text-muted);">忘记密码？</div>
+
+    <div class="divider" style="margin: 20px 0;"></div>
+
+    <div style="font-size: 12px; color: var(--text-secondary); text-align: center;">
+      注册需要：邮箱 + 密码(≥8位含字母数字) + 昵称<br>
+      注册后收到验证邮件，点击链接激活
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P05: 发布出租信息                                      -->
+<!-- ===================================================== -->
+<div class="section-title">P05</div>
+<div class="section-desc">发布出租信息</div>
+
+<div class="page" style="min-height: auto;">
+  <div class="page-label">P05 - 发布出租信息</div>
+
+  <div class="top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="font-size: 14px; color: var(--text-secondary);">← 返回</span>
+      <span class="logo">发布出租信息</span>
+    </div>
+    <div></div>
+  </div>
+
+  <div style="display: flex; max-width: 900px; margin: 24px auto; gap: 32px; padding: 0 24px;">
+    <!-- 左栏：表单 -->
+    <div style="flex: 1;">
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 16px;">基本信息</div>
+
+      <div style="display: flex; gap: 12px;">
+        <div style="flex: 1;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">价格 (£/月) *</div>
+          <div class="input">例如：680</div>
+        </div>
+        <div style="flex: 1;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">房型 *</div>
+          <div class="input">选择 ▾</div>
+        </div>
+        <div style="flex: 1;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">租期 *</div>
+          <div class="input">短租 / 长租 ▾</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <div style="flex: 1;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">可入住日期</div>
+          <div class="input">选择日期</div>
+        </div>
+        <div style="flex: 1;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">小区/公寓名称</div>
+          <div class="input">例如：Urbanest</div>
+        </div>
+      </div>
+
+      <div class="divider" style="margin: 16px 0;"></div>
+
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px;">设施标签</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+        <div class="tag">[☐] 洗衣机</div>
+        <div class="tag">[☐] 烘干机</div>
+        <div class="tag">[☐] 洗碗机</div>
+        <div class="tag">[☐] 花园</div>
+        <div class="tag">[☐] 车位</div>
+        <div class="tag">[☐] 独立卫浴</div>
+        <div class="tag">[☐] bills含</div>
+        <div class="tag">[☐] 允许宠物</div>
+      </div>
+
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px;">照片（最多10张）</div>
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <div class="placeholder-img" style="width: 80px; height: 80px; border-radius: 8px; font-size: 20px;">[+]</div>
+        <div class="placeholder-img" style="width: 80px; height: 80px; border-radius: 8px;">[照片1]</div>
+        <div class="placeholder-img" style="width: 80px; height: 80px; border-radius: 8px;">[照片2]</div>
+      </div>
+
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">详细描述</div>
+      <div class="input" style="height: 100px;">描述房源优势、周边环境、交通情况等...</div>
+
+      <div class="divider" style="margin: 16px 0;"></div>
+
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px;">联系方式 *（至少填一个）</div>
+      <div style="display: flex; gap: 12px;">
+        <div style="flex: 1;"><div class="input">微信号</div></div>
+        <div style="flex: 1;"><div class="input">手机号</div></div>
+        <div style="flex: 1;"><div class="input">邮箱</div></div>
+      </div>
+
+      <div class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 16px; font-size: 14px;">提交发布（需审核）</div>
+      <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 8px; padding-bottom: 24px;">提交后通常24小时内完成审核</div>
+    </div>
+
+    <!-- 右栏：地图定位 -->
+    <div style="width: 340px; flex-shrink: 0;">
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px;">房源位置 *</div>
+      <div class="input">输入地址搜索定位...</div>
+      <div class="placeholder-img" style="height: 400px; border-radius: 8px;">
+        [地图 - 点击标注位置]<br><br>
+        <span style="font-size: 11px;">输入地址自动定位<br>或直接在地图上点击</span>
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px; text-align: center;">
+        位置确认后将显示在地图上
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P06: 发布评价                                          -->
+<!-- ===================================================== -->
+<div class="section-title">P06</div>
+<div class="section-desc">发布真实体验评价</div>
+
+<div class="page" style="height: 600px; display: flex; align-items: center; justify-content: center; background: var(--bg-light);">
+  <div class="page-label" style="position: absolute; top: 0; left: 0; right: 0;">P06 - 发布评价</div>
+
+  <div style="width: 500px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 32px;">
+    <div style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">留下你的真实体验</div>
+    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Urbanest King's Cross · London N1</div>
+
+    <div style="font-size: 14px; font-weight: bold; margin-bottom: 14px;">请打分（每项1-5星）</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-light); padding: 10px 12px; border-radius: 8px;">
+        <span style="font-size: 13px;">交通便利度</span>
+        <span class="star" style="font-size: 16px;">★★★★☆</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-light); padding: 10px 12px; border-radius: 8px;">
+        <span style="font-size: 13px;">安全性</span>
+        <span class="star" style="font-size: 16px;">★★★☆☆</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-light); padding: 10px 12px; border-radius: 8px;">
+        <span style="font-size: 13px;">性价比</span>
+        <span class="star" style="font-size: 16px;">★★★★☆</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-light); padding: 10px 12px; border-radius: 8px;">
+        <span style="font-size: 13px;">总体满意度</span>
+        <span class="star" style="font-size: 16px;">★★★★☆</span>
+      </div>
+    </div>
+
+    <div style="font-size: 14px; font-weight: bold; margin-bottom: 8px;">文字评价 *（10-500字）</div>
+    <div class="input" style="height: 120px;">分享你的真实居住体验...</div>
+    <div style="text-align: right; font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">0/500</div>
+
+    <div style="display: flex; gap: 12px;">
+      <div class="btn" style="flex: 1; padding: 10px;">取消</div>
+      <div class="btn btn-primary" style="flex: 1; padding: 10px;">提交评价</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- P07: 管理后台                                          -->
+<!-- ===================================================== -->
+<div class="section-title">P07</div>
+<div class="section-desc">CEO管理后台</div>
+
+<div class="page" style="height: 700px;">
+  <div class="page-label">P07 - 管理后台</div>
+
+  <div style="display: flex; height: calc(100% - 30px);">
+    <!-- 左侧菜单 -->
+    <div style="width: 200px; background: #333; padding: 16px 0; flex-shrink: 0;">
+      <div style="color: #fff; font-size: 16px; font-weight: bold; padding: 0 16px 24px;">管理后台</div>
+      <div style="color: #fff; padding: 10px 16px; background: #757575; font-size: 13px;">[仪表盘] Dashboard</div>
+      <div style="color: #BDBDBD; padding: 10px 16px; font-size: 13px;">[审核] 待审核列表</div>
+      <div style="color: #BDBDBD; padding: 10px 16px; font-size: 13px;">[房源] 房源管理</div>
+      <div style="color: #BDBDBD; padding: 10px 16px; font-size: 13px;">[用户] 用户管理</div>
+      <div style="color: #BDBDBD; padding: 10px 16px; font-size: 13px;">[录入] 种子数据</div>
+      <div style="color: #BDBDBD; padding: 10px 16px; font-size: 13px;">[评价] 评价管理</div>
+    </div>
+
+    <!-- 右侧内容 -->
+    <div style="flex: 1; padding: 24px; overflow-y: auto;">
+      <div style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">Dashboard</div>
+
+      <!-- 统计卡片 -->
+      <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+        <div style="flex: 1; background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 12px; color: var(--text-muted);">待审核</div>
+          <div style="font-size: 28px; font-weight: bold; margin-top: 4px;">5</div>
+        </div>
+        <div style="flex: 1; background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 12px; color: var(--text-muted);">总房源</div>
+          <div style="font-size: 28px; font-weight: bold; margin-top: 4px;">203</div>
+        </div>
+        <div style="flex: 1; background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 12px; color: var(--text-muted);">总用户</div>
+          <div style="font-size: 28px; font-weight: bold; margin-top: 4px;">87</div>
+        </div>
+        <div style="flex: 1; background: var(--bg-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+          <div style="font-size: 12px; color: var(--text-muted);">总评价</div>
+          <div style="font-size: 28px; font-weight: bold; margin-top: 4px;">34</div>
+        </div>
+      </div>
+
+      <!-- 审核队列 -->
+      <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px;">待审核出租信息</div>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+        <thead>
+          <tr style="background: var(--bg-light); border-bottom: 1px solid var(--border);">
+            <th style="text-align: left; padding: 10px;">提交时间</th>
+            <th style="text-align: left; padding: 10px;">发布者</th>
+            <th style="text-align: left; padding: 10px;">城市</th>
+            <th style="text-align: left; padding: 10px;">价格</th>
+            <th style="text-align: left; padding: 10px;">房型</th>
+            <th style="text-align: left; padding: 10px;">租期</th>
+            <th style="text-align: left; padding: 10px;">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px;">03-31 14:20</td>
+            <td style="padding: 10px;">张姐</td>
+            <td style="padding: 10px;">伦敦</td>
+            <td style="padding: 10px;">£750</td>
+            <td style="padding: 10px;">1室</td>
+            <td style="padding: 10px;">短租</td>
+            <td style="padding: 10px;"><span style="color:#757575; margin-right:8px;">[查看]</span><span style="color:#757575; margin-right:8px;">[通过]</span><span style="color:#757575;">[拒绝]</span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px;">03-31 12:05</td>
+            <td style="padding: 10px;">王同学</td>
+            <td style="padding: 10px;">曼城</td>
+            <td style="padding: 10px;">£520</td>
+            <td style="padding: 10px;">Studio</td>
+            <td style="padding: 10px;">长租</td>
+            <td style="padding: 10px;"><span style="color:#757575; margin-right:8px;">[查看]</span><span style="color:#757575; margin-right:8px;">[通过]</span><span style="color:#757575;">[拒绝]</span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 10px;">03-30 22:30</td>
+            <td style="padding: 10px;">李学姐</td>
+            <td style="padding: 10px;">爱丁堡</td>
+            <td style="padding: 10px;">£600</td>
+            <td style="padding: 10px;">2室</td>
+            <td style="padding: 10px;">长租</td>
+            <td style="padding: 10px;"><span style="color:#757575; margin-right:8px;">[查看]</span><span style="color:#757575; margin-right:8px;">[通过]</span><span style="color:#757575;">[拒绝]</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 种子录入 -->
+      <div style="margin-top: 24px; font-size: 16px; font-weight: bold; margin-bottom: 12px;">快速录入种子房源</div>
+      <div style="display: flex; gap: 12px;">
+        <div class="input" style="flex: 2; margin: 0;">来源平台 ▾</div>
+        <div class="input" style="flex: 3; margin: 0;">原始链接</div>
+        <div class="input" style="flex: 1; margin: 0;">价格£</div>
+        <div class="input" style="flex: 1; margin: 0;">房型 ▾</div>
+        <div class="input" style="flex: 1; margin: 0;">租期 ▾</div>
+        <div class="input" style="flex: 3; margin: 0;">地址（自动地理编码）</div>
+        <div class="btn btn-primary" style="white-space: nowrap;">录入</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- 导航关系图                                             -->
+<!-- ===================================================== -->
+<div class="section-title">NAV</div>
+<div class="section-desc">页面导航关系</div>
+
+<div style="max-width: 800px; margin: 20px auto; background: var(--bg); border: 2px solid var(--border); padding: 32px; border-radius: 8px;">
+  <pre style="font-size: 14px; line-height: 2; color: var(--text-primary);">
+P01 首页（左侧筛选 + 右侧地图 + 左下房源列表）
+  │
+  ├── 点击地图标注 ──→ P02 信息弹窗（Popup）
+  │                      └── "查看详情" ──→ P03 房源详情页
+  │                                          └── "留评价" ──→ P06
+  │
+  ├── 导航栏"发布出租" ──→ (需登录→P04) ──→ P05 发布表单
+  ├── 导航栏"留评价" ──→ (需登录→P04) ──→ P06 评价表单
+  ├── 导航栏"登录/注册" ──→ P04 登录注册卡片
+  │
+  └── /admin ──→ P07 管理后台
+                   ├── Dashboard + 审核队列
+                   └── 种子数据快速录入
+  </pre>
+</div>
+
+</body>
+</html>

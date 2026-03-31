@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Publish Listing | The Curated Navigator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "secondary-fixed": "#d5e3fc",
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "outline": "#737686",
+                        "tertiary-fixed": "#eaddff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-highest": "#e0e3e5",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary-container": "#8343f4",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed": "#25005a",
+                        "on-background": "#191c1e",
+                        "secondary-container": "#d5e3fc",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "secondary": "#515f74",
+                        "primary": "#004ac6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#6a1edb",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#57657a",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#434655",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "outline-variant": "#c3c6d7",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-container": "#f7edff",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "background": "#f7f9fb",
+                        "surface": "#f7f9fb"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); }
+        .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar: Execution of Shared Component JSON with Navigation Overrides -->
+<nav class="fixed top-0 w-full z-50 h-14 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm flex items-center justify-between px-6">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="/">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="font-medium text-sm">Back</span>
+</a>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<h1 class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">Publish Rental Info</h1>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<span class="text-slate-500 dark:text-slate-400 font-sans text-sm font-medium tracking-tight">London</span>
+<span class="text-slate-500 dark:text-slate-400 font-sans text-sm font-medium tracking-tight">Manchester</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">account_circle</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area: Centered 900px -->
+<main class="mt-24 mb-32 max-w-[900px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-[1fr_340px] gap-12 items-start">
+<!-- Left Column: Form -->
+<section class="space-y-10">
+<!-- Basic Info -->
+<div class="space-y-6">
+<div class="flex items-center gap-2 border-l-4 border-primary pl-4">
+<h2 class="text-lg font-bold tracking-tight">Basic Info</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Price (£/mo)</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" placeholder="e.g. 1200" type="number"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Property Type</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none">
+<option>Studio</option>
+<option>1 Bedroom</option>
+<option>2 Bedroom</option>
+<option>En-suite Room</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Rental Term</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none">
+<option>Long term (6m+)</option>
+<option>Short term (1-3m)</option>
+<option>Flexible</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Available Date</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" type="date"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Building / Apartment Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" placeholder="e.g. Landmark Pinnacle" type="text"/>
+</div>
+</div>
+<!-- Amenities -->
+<div class="space-y-6">
+<div class="flex items-center gap-2 border-l-4 border-primary pl-4">
+<h2 class="text-lg font-bold tracking-tight">Amenities</h2>
+</div>
+<div class="flex flex-wrap gap-2">
+<!-- Active State -->
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full text-sm font-medium flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-sm">local_laundry_service</span> Washer
+                        </button>
+<!-- Inactive States -->
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">mode_fan</span> Dryer
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">dishwasher</span> Dishwasher
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">park</span> Garden
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">local_parking</span> Parking
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">bathtub</span> En-suite
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">receipt_long</span> Bills Incl.
+                        </button>
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface-variant border border-outline-variant/50 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">pets</span> Pets allowed
+                        </button>
+</div>
+</div>
+<!-- Photos -->
+<div class="space-y-6">
+<div class="flex items-center gap-2 border-l-4 border-primary pl-4">
+<h2 class="text-lg font-bold tracking-tight">Photos</h2>
+</div>
+<div class="flex flex-wrap gap-3">
+<label class="w-20 h-20 border-2 border-dashed border-outline-variant/50 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all group">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">add_a_photo</span>
+<span class="text-[10px] font-bold text-outline-variant group-hover:text-primary uppercase mt-1">Upload</span>
+<input class="hidden" type="file"/>
+</label>
+<!-- Thumbnails -->
+<div class="relative w-20 h-20 rounded-xl overflow-hidden group shadow-sm">
+<img class="w-full h-full object-cover" data-alt="modern minimalist bedroom with large window and soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9x4w0JVENurelWiZlSX_lW2EM2uGbzod-iA22ghGA8MYvz3aWUBKdnwShtEoCykxk3kYwZHY2oV5gvFlXva_cJMizSJPlAxYIzdI_Mgus8sPVls9xcmiKckqO7ukKTnfHG-m7xQBojbk_j85SLFMEKRxTjuyze8rSIAIK3VTe_mBw2xa33Zegc7p_E3yoCuUCPoW8P-ZPNZ2n4ValEH812QgCr8_XCq4enFVRm-c0bHQUH8r8Twnc28-sg-n_joMSvFjW2NhESaD"/>
+<button class="absolute top-1 right-1 bg-on-surface/80 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-xs">close</span>
+</button>
+</div>
+<div class="relative w-20 h-20 rounded-xl overflow-hidden group shadow-sm">
+<img class="w-full h-full object-cover" data-alt="clean bright kitchen with white cabinets and marble countertop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLM8cV0lZ135cTgggGok7pEDVJjn98v1nkLDARz_-gkkGdH85FcC6Bmm5p7FOXGqjGODfpx3sU8XYnVGUbKgYcTavAOjw4ewEu3WTZQ6g9BDMgS3OgLqT7PJItRJV0HwyceYVkJx4iD4wemr8WG89xqk5O-w4keABqA4Edw79zPcBhgPy51h5jk1ByDTGEfOr_MGDOCxHeAAE4x853l8dolbyP1LFnHVzlaor91krewZrrSXCXqafeFbxeimXwAB1pb-IlDpw5a8OW"/>
+<button class="absolute top-1 right-1 bg-on-surface/80 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-xs">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-6">
+<div class="flex items-center gap-2 border-l-4 border-primary pl-4">
+<h2 class="text-lg font-bold tracking-tight">Description</h2>
+</div>
+<textarea class="w-full h-[100px] bg-surface-container-lowest border-none rounded-lg p-4 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none resize-none leading-relaxed" placeholder="Describe the property, nearby stations, roommates, etc..."></textarea>
+</div>
+<!-- Contact Info -->
+<div class="space-y-6">
+<div class="flex items-center gap-2 border-l-4 border-primary pl-4">
+<h2 class="text-lg font-bold tracking-tight">Contact</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">WeChat ID</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Phone</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" type="tel"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Email</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg p-3 ring-1 ring-outline-variant/30 focus:ring-primary/40 transition-all outline-none" type="email"/>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="pt-6 border-t border-surface-container-highest">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-4 rounded-xl shadow-lg hover:shadow-primary/20 active:scale-[0.98] transition-all">
+                        Submit for Review
+                    </button>
+<p class="text-center mt-4 text-sm text-on-surface-variant font-medium flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        Typically reviewed within 24h
+                    </p>
+</div>
+</section>
+<!-- Right Column: Sticky Sidebar -->
+<aside class="md:sticky md:top-24 space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="space-y-4">
+<h3 class="text-lg font-bold tracking-tight">Property Location<span class="text-error ml-1">*</span></h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 outline-none" placeholder="Search for address..." type="text"/>
+</div>
+<!-- Map Placeholder -->
+<div class="relative w-full h-[400px] rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="stylized vector map of london city center with muted colors and clear street patterns" data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4Nq42vbJcRNgPPn9GeapgxgzhgAzZgAZ9VQdJr4tcPsdTYZEqnJKy5_ikzhQZkc00jy_NqXx-FVv1HJZTbpP28Jc48ZO5N-hfA-AOa0yjvkl3LXyepfxQA96C-_y7buQ22okmN4jq_1mMXiIMIKuzg8SiPzXPxo6nzheOU44OVbvegPsv9YbxOOCeexoqVUJHfh5_E0Io8ZiE7kZxkxJSzPkPfRgL1Q2ZgLuLfV7z3bjn6M9iZoF1NwMKWgIN57qYf8Gk2YOg5_3"/>
+<div class="absolute inset-0 bg-on-surface/5 flex items-center justify-center cursor-crosshair">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Map Controls Overlay -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-white/90 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+<div class="bg-primary/5 p-3 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<p class="text-[12px] leading-snug text-on-surface-variant">Location will be shown on the map after confirmation. We recommend pinning the building for better accuracy.</p>
+</div>
+</div>
+</div>
+<!-- Guidance Card -->
+<div class="bg-tertiary/5 p-6 rounded-2xl border border-tertiary/10">
+<h4 class="text-tertiary font-bold text-sm mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span> Curator Tip
+                    </h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                        Listings with high-quality, bright photos are 4x more likely to receive inquiries within the first 48 hours. Include a photo of the nearby street or building facade.
+                    </p>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar: Suppressed on focused Transactional/Form Page as per Shell Visibility Rules -->
+</body></html>
