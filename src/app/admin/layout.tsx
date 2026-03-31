@@ -55,7 +55,7 @@ export default function AdminLayout({
             无权限访问
           </p>
           <p className="text-[13px] text-[#434655] mb-4">
-            需要管理员权限。请使用 admin@test.com / admin1234 登录。
+            需要管理员权限才能访问此页面。
           </p>
           <Link
             href="/"

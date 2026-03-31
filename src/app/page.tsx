@@ -50,7 +50,7 @@ export default function HomePage() {
       if (filters.maxPrice < 5000) params.set("maxPrice", String(filters.maxPrice));
       if (filters.roomType) params.set("roomType", filters.roomType);
       if (filters.rentalType) params.set("rentalType", filters.rentalType);
-      params.set("limit", "50");
+      params.set("limit", "200");
 
       try {
         const res = await fetch(`/api/listings?${params}`);

@@ -56,30 +56,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             role: user.role,
             nickname: user.nickname,
           };
-        } catch {
-          // DB not available - use mock auth for development
-          if (
-            credentials.email === "demo@test.com" &&
-            credentials.password === "demo1234"
-          ) {
-            return {
-              id: "mock-user-1",
-              email: "demo@test.com",
-              role: "USER",
-              nickname: "Demo用户",
-            };
-          }
-          if (
-            credentials.email === "admin@test.com" &&
-            credentials.password === "admin1234"
-          ) {
-            return {
-              id: "mock-admin-1",
-              email: "admin@test.com",
-              role: "ADMIN",
-              nickname: "管理员",
-            };
-          }
+        } catch (error) {
+          console.error("Auth error - database unavailable:", error);
           return null;
         }
       },

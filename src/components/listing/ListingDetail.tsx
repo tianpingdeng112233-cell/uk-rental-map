@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   Heart,
@@ -94,12 +95,15 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
           {/* Left Column */}
           <div className="flex-1">
             {/* Photo */}
-            <div className="w-full h-[280px] rounded-xl bg-[#F2F4F6] overflow-hidden mb-4">
+            <div className="w-full h-[280px] rounded-xl bg-[#F2F4F6] overflow-hidden mb-4 relative">
               {listing.photos[0] ? (
-                <img
+                <Image
                   src={listing.photos[0]}
                   alt={listing.address}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  className="object-cover"
+                  priority
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-[#C3C6D7]">

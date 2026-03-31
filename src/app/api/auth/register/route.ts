@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { generateToken, hashToken } from "@/lib/tokens";
 import { sendEmail, verificationEmailHtml } from "@/lib/email";
+import { checkRateLimit, AUTH_RATE_LIMIT, getClientIP } from "@/lib/rate-limit";
 
 const registerSchema = z.object({
   email: z.string().email("请输入有效的邮箱地址"),
@@ -16,6 +17,16 @@ const registerSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  // Rate limiting
+  const ip = getClientIP(request);
+  const rl = checkRateLimit(`register:${ip}`, AUTH_RATE_LIMIT);
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { success: false, error: { code: "RATE_LIMITED", message: "请求过于频繁，请稍后重试" } },
+      { status: 429, headers: { "Retry-After": String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } }
+    );
+  }
+
   try {
     const body = await request.json();
     const parsed = registerSchema.safeParse(body);

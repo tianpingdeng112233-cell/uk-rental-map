@@ -8,8 +8,11 @@ import {
   Loader2,
   MapPin,
   Upload,
+  X,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { uploadPhoto, compressImage } from "@/lib/storage";
+import { geocodeAddress } from "@/lib/geocode";
 import type { City } from "@/types";
 
 const ROOM_TYPES = ["Studio", "1bed", "2bed", "3bed", "4bed+"];
@@ -50,6 +53,8 @@ export default function PublishPage() {
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactWechat, setContactWechat] = useState("");
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetch("/api/cities")
@@ -72,6 +77,37 @@ export default function PublishPage() {
     );
   };
 
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files?.length) return;
+    if (photos.length + files.length > 6) {
+      setError("最多上传6张照片");
+      return;
+    }
+    setUploading(true);
+    setError("");
+    for (const file of Array.from(files)) {
+      try {
+        const compressed = await compressImage(file);
+        const path = `listings/${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        const result = await uploadPhoto(compressed, path);
+        if (result.success && result.url) {
+          setPhotos((prev) => [...prev, result.url!]);
+        } else {
+          setError(result.error || "上传失败");
+        }
+      } catch {
+        setError("照片上传失败");
+      }
+    }
+    setUploading(false);
+    e.target.value = "";
+  };
+
+  const removePhoto = (index: number) => {
+    setPhotos((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
@@ -82,10 +118,19 @@ export default function PublishPage() {
     setError("");
     setSubmitting(true);
 
-    // Find city coordinates for lat/lng
-    const city = cities.find((c) => c.id === cityId);
-    const lat = city ? city.lat + (Math.random() - 0.5) * 0.02 : 51.5074;
-    const lng = city ? city.lng + (Math.random() - 0.5) * 0.02 : -0.1278;
+    // Geocode address to get coordinates
+    let lat: number;
+    let lng: number;
+    const geocodeResult = await geocodeAddress(address);
+    if (geocodeResult) {
+      lat = geocodeResult.lat;
+      lng = geocodeResult.lng;
+    } else {
+      // Fallback to city center with small offset if geocoding fails
+      const city = cities.find((c) => c.id === cityId);
+      lat = city ? city.lat + (Math.random() - 0.5) * 0.02 : 51.5074;
+      lng = city ? city.lng + (Math.random() - 0.5) * 0.02 : -0.1278;
+    }
 
     try {
       const res = await fetch("/api/listings", {
@@ -103,7 +148,7 @@ export default function PublishPage() {
           description: description || undefined,
           amenities,
           billsIncluded,
-          photos: [],
+          photos,
           contactEmail: contactEmail || undefined,
           contactPhone: contactPhone || undefined,
           contactWechat: contactWechat || undefined,
@@ -234,14 +279,36 @@ export default function PublishPage() {
             </label>
           </div>
 
-          {/* Photos placeholder */}
+          {/* Photos */}
           <div className="bg-white rounded-xl p-5 space-y-3">
-            <h3 className="text-[16px] font-semibold text-[#191C1E]">照片</h3>
-            <div className="border-2 border-dashed border-[#C3C6D7]/40 rounded-xl p-8 text-center">
-              <Upload size={32} className="mx-auto text-[#C3C6D7] mb-2" />
-              <p className="text-[13px] text-[#434655]">拖拽或点击上传照片</p>
-              <p className="text-[11px] text-[#C3C6D7] mt-1">支持 JPG, PNG，单张最大 500KB</p>
-            </div>
+            <h3 className="text-[16px] font-semibold text-[#191C1E]">照片（最多6张）</h3>
+            {/* Photo preview grid */}
+            {photos.length > 0 && (
+              <div className="grid grid-cols-3 gap-2">
+                {photos.map((url, i) => (
+                  <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[#F2F4F6]">
+                    <img src={url} alt={`照片${i + 1}`} className="w-full h-full object-cover" />
+                    <button type="button" onClick={() => removePhoto(i)}
+                      className="absolute top-1 right-1 p-1 rounded-full bg-black/50 text-white hover:bg-black/70">
+                      <X size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {photos.length < 6 && (
+              <label className="block border-2 border-dashed border-[#C3C6D7]/40 rounded-xl p-8 text-center cursor-pointer hover:border-[#2563EB]/40 transition-colors">
+                <input type="file" accept="image/jpeg,image/png,image/webp" multiple
+                  onChange={handlePhotoUpload} className="hidden" disabled={uploading} />
+                {uploading ? (
+                  <Loader2 size={32} className="mx-auto text-[#2563EB] mb-2 animate-spin" />
+                ) : (
+                  <Upload size={32} className="mx-auto text-[#C3C6D7] mb-2" />
+                )}
+                <p className="text-[13px] text-[#434655]">{uploading ? "上传中..." : "点击上传照片"}</p>
+                <p className="text-[11px] text-[#C3C6D7] mt-1">支持 JPG, PNG, WebP，自动压缩至 500KB 以内</p>
+              </label>
+            )}
           </div>
 
           {/* Contact */}

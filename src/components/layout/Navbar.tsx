@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MapPin, Star, PlusCircle, User, LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { analytics } from "@/lib/analytics";
 import type { City } from "@/types";
 
 interface NavbarProps {
@@ -38,9 +39,11 @@ export default function Navbar({
         {cities.map((city) => (
           <button
             key={city.id}
-            onClick={() =>
-              onCitySelect(activeCityId === city.id ? null : city.id)
-            }
+            onClick={() => {
+              const newCityId = activeCityId === city.id ? null : city.id;
+              onCitySelect(newCityId);
+              if (newCityId) analytics.citySelect(city.nameEn);
+            }}
             className={`px-3 py-1.5 rounded-full text-[13px] font-medium whitespace-nowrap transition-colors ${
               activeCityId === city.id
                 ? "bg-gradient-to-r from-[#004AC6] to-[#2563EB] text-white"

@@ -224,7 +224,7 @@ export default function MapContainer({
       });
     });
 
-    // Click marker → popup
+    // Click marker → popup (DOM API to prevent XSS)
     m.on("click", "unclustered-point", (e) => {
       if (!e.features?.length) return;
       const f = e.features[0];
@@ -234,22 +234,45 @@ export default function MapContainer({
 
       if (popup.current) popup.current.remove();
 
+      // Build popup content safely using DOM API (no string interpolation)
+      const container = document.createElement("div");
+      container.style.cssText = "padding:16px;font-family:Inter,'Noto Sans SC',sans-serif";
+
+      const priceDiv = document.createElement("div");
+      priceDiv.style.cssText = "font-size:22px;font-weight:700;color:#004AC6";
+      priceDiv.textContent = `£${props.price}`;
+      const perMonth = document.createElement("span");
+      perMonth.style.cssText = "font-size:13px;font-weight:400;color:#434655";
+      perMonth.textContent = "/月";
+      priceDiv.appendChild(perMonth);
+      container.appendChild(priceDiv);
+
+      const tagsDiv = document.createElement("div");
+      tagsDiv.style.cssText = "display:flex;gap:6px;margin-top:6px";
+      const tagStyle = "padding:2px 8px;background:#F2F4F6;border-radius:9999px;font-size:11px;color:#434655;font-weight:500";
+      const roomTag = document.createElement("span");
+      roomTag.style.cssText = tagStyle;
+      roomTag.textContent = String(props.roomType);
+      tagsDiv.appendChild(roomTag);
+      const rentalTag = document.createElement("span");
+      rentalTag.style.cssText = tagStyle;
+      rentalTag.textContent = props.rentalType === "SHORT" ? "短租" : "长租";
+      tagsDiv.appendChild(rentalTag);
+      container.appendChild(tagsDiv);
+
+      const btn = document.createElement("button");
+      btn.style.cssText = "margin-top:10px;width:100%;padding:8px;border-radius:8px;background:linear-gradient(135deg,#004AC6,#2563EB);color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;letter-spacing:0.5px";
+      btn.textContent = "查看详情";
+      btn.addEventListener("click", () => onMarkerClick(String(props.id)));
+      container.appendChild(btn);
+
       popup.current = new mapboxgl.Popup({
         offset: 20,
         maxWidth: "280px",
         closeButton: true,
       })
         .setLngLat(coords)
-        .setHTML(
-          `<div style="padding:16px;font-family:Inter,'Noto Sans SC',sans-serif">
-            <div style="font-size:22px;font-weight:700;color:#004AC6">£${props.price}<span style="font-size:13px;font-weight:400;color:#434655">/月</span></div>
-            <div style="display:flex;gap:6px;margin-top:6px">
-              <span style="padding:2px 8px;background:#F2F4F6;border-radius:9999px;font-size:11px;color:#434655;font-weight:500">${props.roomType}</span>
-              <span style="padding:2px 8px;background:#F2F4F6;border-radius:9999px;font-size:11px;color:#434655;font-weight:500">${props.rentalType === "SHORT" ? "短租" : "长租"}</span>
-            </div>
-            <button onclick="window.__onPopupClick('${props.id}')" style="margin-top:10px;width:100%;padding:8px;border-radius:8px;background:linear-gradient(135deg,#004AC6,#2563EB);color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;letter-spacing:0.5px">查看详情</button>
-          </div>`
-        )
+        .setDOMContent(container)
         .addTo(m);
     });
 
@@ -260,10 +283,6 @@ export default function MapContainer({
     m.on("mouseleave", "unclustered-point", () => (m.getCanvas().style.cursor = ""));
 
     map.current = m;
-
-    (window as unknown as Record<string, unknown>).__onPopupClick = (id: string) => {
-      onMarkerClick(id);
-    };
 
     return () => {
       m.remove();

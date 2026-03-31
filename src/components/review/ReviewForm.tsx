@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Star, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { analytics } from "@/lib/analytics";
 
 interface ReviewFormProps {
   lat: number;
@@ -104,6 +105,7 @@ export default function ReviewForm({
       });
       const json = await res.json();
       if (json.success) {
+        analytics.reviewSubmit(address);
         onSuccess();
       } else {
         setError(json.error?.message || "提交失败");

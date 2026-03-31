@@ -2,6 +2,7 @@
 
 import { RotateCcw } from "lucide-react";
 import PriceSlider from "./PriceSlider";
+import { analytics } from "@/lib/analytics";
 import type { FilterState } from "@/types";
 
 const ROOM_TYPES = ["All", "Studio", "1bed", "2bed", "3bed+"];
@@ -16,8 +17,16 @@ export default function FilterPanel({
   filters,
   onFilterChange,
 }: FilterPanelProps) {
-  const update = (partial: Partial<FilterState>) =>
-    onFilterChange({ ...filters, ...partial });
+  const update = (partial: Partial<FilterState>) => {
+    const newFilters = { ...filters, ...partial };
+    onFilterChange(newFilters);
+    analytics.filterApply({
+      minPrice: newFilters.minPrice,
+      maxPrice: newFilters.maxPrice,
+      roomType: newFilters.roomType || "all",
+      rentalType: newFilters.rentalType || "all",
+    });
+  };
 
   const reset = () =>
     onFilterChange({
@@ -30,11 +39,11 @@ export default function FilterPanel({
 
   return (
     <div className="p-4 space-y-5">
-      <h3 className="text-[14px] font-semibold text-[#191C1E]">筛选条件</h3>
+      <h3 className="text-[14px] font-semibold text-on-surface">筛选条件</h3>
 
       {/* Price Range */}
       <div>
-        <label className="text-[11px] font-semibold text-[#434655] uppercase tracking-wide">
+        <label className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wide">
           月租价格 (£/月)
         </label>
         <div className="mt-2">
@@ -49,7 +58,7 @@ export default function FilterPanel({
 
       {/* Room Type */}
       <div>
-        <label className="text-[11px] font-semibold text-[#434655] uppercase tracking-wide">
+        <label className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wide">
           房型
         </label>
         <div className="flex flex-wrap gap-1.5 mt-2">
@@ -65,7 +74,7 @@ export default function FilterPanel({
                 className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-colors ${
                   isActive
                     ? "bg-gradient-to-r from-[#004AC6] to-[#2563EB] text-white"
-                    : "bg-[#F2F4F6] text-[#434655] hover:bg-[#E8EAED]"
+                    : "bg-surface-container-low text-on-surface-variant hover:bg-[#E8EAED]"
                 }`}
               >
                 {type}
@@ -77,7 +86,7 @@ export default function FilterPanel({
 
       {/* Rental Type */}
       <div>
-        <label className="text-[11px] font-semibold text-[#434655] uppercase tracking-wide">
+        <label className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wide">
           租期
         </label>
         <div className="flex flex-wrap gap-1.5 mt-2">
@@ -92,7 +101,7 @@ export default function FilterPanel({
                 className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-colors ${
                   isActive
                     ? "bg-gradient-to-r from-[#004AC6] to-[#2563EB] text-white"
-                    : "bg-[#F2F4F6] text-[#434655] hover:bg-[#E8EAED]"
+                    : "bg-surface-container-low text-on-surface-variant hover:bg-[#E8EAED]"
                 }`}
               >
                 {type}
@@ -102,17 +111,14 @@ export default function FilterPanel({
         </div>
       </div>
 
-      {/* Actions */}
-      <div className="flex gap-2 pt-1">
+      {/* Reset */}
+      <div className="pt-1">
         <button
           onClick={reset}
-          className="flex-1 py-2 rounded-lg text-[13px] font-medium text-[#434655] bg-[#F2F4F6] hover:bg-[#E8EAED] transition-colors flex items-center justify-center gap-1.5"
+          className="w-full py-2 rounded-lg text-[13px] font-medium text-on-surface-variant bg-surface-container-low hover:bg-[#E8EAED] transition-colors flex items-center justify-center gap-1.5"
         >
           <RotateCcw size={14} />
-          重置
-        </button>
-        <button className="flex-1 py-2 rounded-lg text-[13px] font-medium bg-gradient-to-r from-[#004AC6] to-[#2563EB] text-white hover:opacity-90 transition-opacity">
-          应用筛选
+          重置筛选
         </button>
       </div>
     </div>

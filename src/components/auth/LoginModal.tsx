@@ -274,10 +274,12 @@ export default function LoginModal({ onClose }: LoginModalProps) {
           </form>
         )}
 
-        {/* Dev hint */}
-        <div className="mt-4 pt-3 border-t border-[#F2F4F6] text-[11px] text-[#C3C6D7] text-center">
-          开发模式：demo@test.com / demo1234
-        </div>
+        {/* Dev hint - only shown in development */}
+        {process.env.NODE_ENV === "development" && (
+          <div className="mt-4 pt-3 border-t border-[#F2F4F6] text-[11px] text-[#C3C6D7] text-center">
+            开发模式：demo@test.com / demo1234
+          </div>
+        )}
       </div>
     </div>
   );
